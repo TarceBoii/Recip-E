@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<ui:composition template="/templates/MealPlanTemplate.xhtml">
+
+    <ui:define name="content">
+        <!-- Meal Plan Display -->
+        <h:form>
+            <div class="meal-plan-container">
+                <!-- Iterate through each day and display meals -->
+                <ui:repeat var="day" value="#{mealPlanBean.mealPlan.dailyMeals}">
+                    <div class="day-column">
+                        <h2>#{day.key}</h2> <!-- Day name (e.g., Monday) -->
+
+                        <!-- Iterate through meals of the day -->
+                        <ui:repeat var="meal" value="#{day.value.getMeals()}" varStatus="status">
+                            <div class="meal-card">
+                                <!-- Meal Type (e.g., Breakfast, Lunch, Dinner) -->
+                                <h3>#{mealPlanBean.getMealType(status.index)}</h3>
+
+                                <!-- Meal Image -->
+<!--                                <h:graphicImage value="#{meal.imageUrl}" alt="Meal Image"-->
+                                <h:commandLink action="#{mealPlanBean.viewRecipe(meal.id)}">
+                                <h:graphicImage value="#{mealPlanBean.getImagePath(meal, status.index)}" alt="Meal Image"
+                                                style="width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 10px;" />
+                                </h:commandLink>
+
+                                <!-- Meal Title with Command Link -->
+                                <h:commandLink action="#{mealPlanBean.viewRecipe(meal.id)}"
+                                               style="text-decoration-color: #72ba92;"
+                                               onmousedown="this.style.textDecorationColor='#f8d775';"
+                                               onmouseup="this.style.textDecorationColor='#72ba92';"
+                                               onmouseover="this.style.fontWeight='bold'; this.style.textDecorationThickness='2px';"
+                                               onmouseout="this.style.fontWeight='normal'; this.style.textDecorationThickness='auto';" >
+                                    <h:outputText value="#{mealPlanBean.getTruncatedTitle(meal.title, 30)}"
+                                                  style="font-size: 14px; color: #333;" />
+                                </h:commandLink>
+                            </div>
+                        </ui:repeat>
+                    </div>
+                </ui:repeat>
+            </div>
+        </h:form>
+    </ui:define>
+
+</ui:composition>
+</html>

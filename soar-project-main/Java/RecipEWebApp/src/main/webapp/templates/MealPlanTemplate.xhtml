@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+    <title>Meal Plan</title>
+    <h:outputStylesheet name="css/styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&amp;display=swap" rel="stylesheet" />
+</h:head>
+<h:body>
+    <h1>Your Weekly Meal Plan</h1>
+    <div class="sidenav">
+        <div>
+            <h:graphicImage value="/images/tilted_logo.png" alt="App Logo" width="130" />
+        </div>
+        <hr />
+        <ui:insert name="menu">
+            <h:link value="Home" outcome="/index.xhtml" />
+            <h:link value="User Profile" outcome="/UserProfile.xhtml" />
+            <h:link style="color: #f1f1f1" value="Meal Plan" outcome="/MealPlan.xhtml" />
+            <h:link value="Recipe Detail" outcome="/RecipeDetail.xhtml" />
+            <h:link value="Grocery List" outcome="/GroceryList.xhtml" />
+
+        </ui:insert>
+    </div>
+    <!-- Top Navigation Buttons -->
+    <div class="top-buttons">
+        <button type="button" class="save-button" onclick="saveMealPlanAsPNG()">Save .png</button>
+        <button type="button" class="save-button" onclick="saveMealPlanAsPDF()">Save .pdf</button>
+        <button type="button" class="save-button" onclick="#{mealPlanBean.generateMealPlan()}">Generate</button>
+    </div>
+
+    <!-- Content Section for Meal Plan -->
+    <ui:insert name="content" />
+
+    <!-- JavaScript for Saving Meal Plan as PNG and/or PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+
+    <script>
+        async function captureMealPlan() {
+            try {
+                const mealPlanContainer = document.querySelector('.meal-plan-container');
+                if (!mealPlanContainer) {
+                    alert('Meal Plan content not found!');
+                    throw new Error('Meal Plan container missing');
+                }
+
+                console.log('Meal Plan container found, starting capture...');
+
+                // Align content for capture
+                document.body.style.display = 'flex';
+                document.body.style.flexDirection = 'column';
+                document.body.style.alignItems = 'center';
+                document.body.style.justifyContent = 'center';
+
+                // Use html2canvas to capture the content
+                const canvas = await html2canvas(mealPlanContainer, {
+                    scrollY: -window.scrollY, // Adjust scrolling offset
+                    scale: 2,                // High resolution for clarity
+                    useCORS: true,           // Handle cross-origin images
+                });
+
+                console.log('Canvas captured successfully.');
+
+                // Restore original layout
+                document.body.style.display = '';
+                document.body.style.flexDirection = '';
+                document.body.style.alignItems = '';
+                document.body.style.justifyContent = '';
+
+                return canvas;
+            } catch (error) {
+                console.error('Error during capture:', error);
+                throw error;
+            }
+        }
+
+        async function saveMealPlanAsPNG() {
+            try {
+                console.log('Starting PNG export...');
+
+                // Capture the meal plan as a canvas
+                const canvas = await captureMealPlan();
+                const image = canvas.toDataURL('image/png');
+
+                console.log('Image data generated from canvas.');
+
+                // Trigger download of the PNG file
+                const link = document.createElement('a');
+                link.href = image;
+                link.download = 'MealPlan.png';
+                link.click();
+
+                alert('Meal Plan saved as PNG!');
+            } catch (error) {
+                console.error('Failed to save the meal plan as PNG:', error);
+                alert('Failed to save the meal plan as PNG. Check the console for details.');
+            }
+        }
+
+        async function saveMealPlanAsPDF() {
+            try {
+                console.log('Starting PDF generation...');
+
+                // Capture the meal plan as a canvas
+                const canvas = await captureMealPlan();
+                const image = canvas.toDataURL('image/png');
+
+                console.log('Image data generated from canvas.');
+
+                // Create jsPDF instance
+                const { jsPDF } = window.jspdf;
+                const pdf = new jsPDF({
+                    orientation: 'portrait',
+                    unit: 'mm',
+                    format: 'a4',
+                });
+
+                console.log('jsPDF instance created.');
+
+                // Calculate dimensions
+                const imgWidth = 210; // A4 width in mm
+                const imgHeight = (canvas.height * imgWidth) / canvas.width;
+
+                console.log('Image dimensions calculated:', { imgWidth, imgHeight });
+
+                // Add the image to the PDF
+                pdf.addImage(image, 'PNG', 0, 0, imgWidth, imgHeight);
+
+                console.log('Image added to PDF.');
+
+                // Save the PDF
+                pdf.save('MealPlan.pdf');
+                alert('Meal Plan saved as PDF!');
+            } catch (error) {
+                console.error('Failed to save the meal plan as PDF:', error);
+                alert('Failed to save the meal plan as PDF. Check the console for details.');
+            }
+        }
+    </script>
+</h:body>
+</html>

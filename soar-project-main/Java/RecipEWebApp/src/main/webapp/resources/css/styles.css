@@ -1,0 +1,571 @@
+/* General Body Styling */
+body {
+    font-family: "Quicksand", sans-serif; /* Replace with your chosen font */
+    margin: 0;
+    padding: 0;
+    background-color: #ffe4c4; /* Light peach background or use this fbe4d6 */
+    color: #333; /* Text color */
+    height: 100vh; /* Ensure full viewport height */
+    margin-left: 160px; /* Same width as the sidebar */
+}
+
+html {
+    background-color: #ffe4c4; /* Light peach */
+}
+
+/* Meal Plan Header */
+h1 {
+    text-align: center;
+    margin-top: 20px;
+    color: #444; /* Darker header color */
+}
+
+/* Top Navigation Buttons */
+.top-buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding: 10px 20px;
+}
+
+.top-buttons h\:commandButton {
+    font-family: "Quicksand", sans-serif;
+    padding: 10px 20px;
+    background-color: #abedb8; /* Light green */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.top-buttons h\:commandButton:hover {
+    background-color: #72ba92; /* Darker green on hover */
+    color: white;
+}
+
+.top-buttons input[type="submit"] {
+    font-family: "Quicksand", sans-serif;
+    padding: 10px 20px;
+    background-color: #abedb8; /* Light green */
+    color: #333;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.top-buttons input[type="submit"]:hover {
+    background-color: #72ba92; /* Darker green on hover */
+    color: white;
+}
+
+.save-button{
+    font-family: "Quicksand", sans-serif;
+    padding: 10px 20px;
+    background-color: #abedb8; /* Light green */
+    color: #434343;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: bolder;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.save-button:hover{
+    font-family: "Quicksand", sans-serif;
+    background-color: #72ba92; /* Darker green on hover */
+    color: white;
+}
+
+/* Meal Plan Container */
+.meal-plan-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    margin: 0 50px; /* Space around the container */
+    gap: 20px; /* Space between day columns */
+}
+
+.day-column {
+    flex: 1; /* Equal width for all columns */
+    background-color: #FFD27F; /* Soft yellow */
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, border-color 0.3s ease; /* Smooth transition */
+}
+
+.day-column:hover {
+    background-color: #333; /* Dark background color on hover */
+}
+
+.day-column h2 {
+    text-align: center;
+    font-size: 18px;
+    color: #444;
+    margin-bottom: 10px;
+    transition: color 0.3s ease; /* Smooth transition for color change */
+}
+
+.day-column:hover h2 {
+    color: #FFD27F; /* New text color on hover */
+}
+
+/* Meal Cards */
+.meal-card {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #fff; /* White card background */
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Ensures all content is centered */
+    justify-content: space-between; /* Ensures even spacing for items inside the card */
+    height: 250px; /* Set a fixed height for all meal cards */
+}
+
+.meal-card img {
+    width: 100px; /* Set consistent image width */
+    height: 100px; /* Set consistent image height */
+    border-radius: 50%; /* Make the image circular */
+    object-fit: cover; /* Ensure the image scales properly */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    margin-bottom: 10px; /* Space between image and title */
+    flex-shrink: 0; /* Prevents image from shrinking */
+}
+
+/* Meal Type (e.g., Breakfast, Lunch, Dinner) */
+.meal-card h3 {
+    margin-bottom: 10px;
+    font-size: 16px;
+    color: #444;
+    flex-shrink: 0; /* Prevents meal type text from shrinking */
+}
+
+/* Meal Title */
+.meal-card h\:outputText {
+    display: block;
+    font-size: 14px;
+    color: #333;
+    margin-top: 5px;
+    flex-shrink: 0; /* Prevents meal title text from shrinking */
+}
+
+/* Placeholder Image Styling */
+.meal-card img[alt="Meal Image"] {
+    background-color: #333; /* Dark gray background for placeholder images */
+    width: 100px; /* Set consistent image width */
+    height: 100px; /* Set consistent image height */
+    border-radius: 50%; /* Make the image circular */
+    object-fit: cover; /* Ensure the image scales properly */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    margin-bottom: 10px; /* Space between image and title */
+    flex-shrink: 0; /* Prevents image from shrinking */
+}
+
+.commandLink {
+    transition: color 0.3s ease, font-weight 0.3s ease;
+}
+
+.commandLink:hover {
+    transition: color 0.3s ease, font-weight 0.3s ease;
+}
+
+a img {
+    border: none;
+    transition: transform 0.2s ease-in-out;
+}
+
+a img:hover {
+    transform: scale(1.05);
+}
+
+/* Print Meal Plan as PDF design */
+@media print {
+    body {
+        margin: 0;
+        padding: 0;
+        -webkit-print-color-adjust: exact; /* Ensure colors are preserved */
+        print-color-adjust: exact;
+    }
+    .save-button {
+        display: none; /* Hide the save button */
+    }
+    img {
+        max-width: 100%;
+        height: auto;
+        object-fit: cover; /* Crop and fit the images nicely */
+    }
+    .meal-plan-container {
+        margin: 0 auto;
+        width: 100%;
+        transform-origin: top center;
+        transform: scale(0.85);
+    }
+    h2, h3, p {
+        font-size: larger;
+    }
+    /* Disable hover effects during print */
+    .day-column:hover {
+        background-color: #FFD27F;
+    }
+    .day-column:hover h2{
+        color: #333;
+    }
+    @page {
+        size: A4 landscape; /* Automatically adjust to fit the content */
+        margin: 0; /* Adjust the margin for fitting content neatly */
+    }
+    /* Force everything to scale proportionally to fit the page */
+    html, body {
+        height: 100%;
+        overflow: hidden; /* Prevent overflow causing split content */
+    }
+    .day-column {
+        break-inside: avoid; /* Prevent column breaking onto the next page */
+    }
+}
+
+/* Recipe Detail Layout */
+.recipe-detail-wrapper {
+    display: flex;
+    margin-left: 180px; /* Space for the sidebar */
+    padding: 20px;
+    background-color: #ffe4c4; /* Match body background */
+}
+
+.recipe-details-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Add spacing between recipe sections */
+}
+
+/* Recipe Header */
+.recipe-header {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.recipe-header h1 {
+    font-size: 24px;
+    color: #444;
+    margin-top: 10px;
+}
+
+.recipe-header img {
+    width: 300px;
+    height: 300px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+/* Recipe Sections (Ingredients, Instructions, Nutrition) */
+.recipe-section {
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-section h2 {
+    font-size: 20px;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.recipe-section p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 5px 0;
+}
+
+/* Navigation Buttons */
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.nav-arrow {
+    background-color: #abedb8; /* Light green */
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 18px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.nav-arrow:hover {
+    background-color: #72ba92; /* Darker green */
+}
+
+.nav-arrow:disabled {
+    background-color: #d3d3d3; /* Light grey for disabled state */
+    color: #999; /* Grey text for disabled state */
+    cursor: not-allowed;
+}
+/* The following overrides PrimesFaces' CSS theming, hence the ultra-verbose styling */
+
+/* Overriding the styling to make the unselected accordion panel look like the buttons. */
+body .ui-accordion .ui-accordion-header {
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-color: #444;
+    background: #444;
+    color: #fff;
+}
+
+/* Hover color when unselected. */
+body .ui-accordion .ui-accordion-header:hover {
+    border-color: #333;
+    background: #333;
+    color: #FFFFFF;
+}
+
+/* Color when active (opened). Also flattening the bottom of the header (otherwise shape looks weird). */
+body .ui-accordion .ui-accordion-header.ui-state-active {
+    border-color: #444;
+    background: #444;
+    color: #fff;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+/* Hover color when selected. */
+body .ui-accordion .ui-accordion-header.ui-state-active:hover {
+    border-color: #333;
+    background: #333;
+    color: #FFFFFF;
+}
+
+/* Top radius. */
+body .ui-accordion .ui-accordion-header:first-child {
+    margin-top: 0;
+    border-top: 0 solid #444;
+    border-top-right-radius: 8px;
+    border-top-left-radius: 8px;
+}
+
+/* Bottom radius. */
+body .ui-accordion .ui-accordion-header.ui-accordion-header-last {
+    border-bottom-right-radius:8px;
+    border-bottom-left-radius:8px
+}
+
+/* Changing color of the content. */
+body .ui-accordion .ui-accordion-content {
+    border: 2px solid #444;
+    border-top-width: 0;
+    border-top-style: solid;
+    border-top-color: rgb(25, 25, 25);
+    background: #FFD27F;
+    color: #444444;
+    padding: .571rem 1rem;
+    margin: 0;
+    position: static;
+    border-top: 0 none;
+}
+
+/* Same thing as before just with checkboxes. */
+body .ui-chkbox .ui-chkbox-box {
+    border: 1px solid #333;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-width: 1px;
+    background: #fff;
+    width: 20px;
+    min-width: 20px;
+    height: 20px;
+    text-align: center;
+    position: relative;
+    border-radius: 3px;
+    transition: background-color .2s,color .2s,border-color .2s,box-shadow .2s,opacity .2s;
+}
+
+body .ui-chkbox .ui-chkbox-box.ui-state-hover {
+    background: #eee;
+}
+
+body .ui-chkbox .ui-chkbox-box.ui-state-active {
+    border-color: #444;
+    background: #fff;
+    color: #333;
+}
+
+body .ui-chkbox .ui-chkbox-box.ui-state-active.ui-state-hover {
+    background: #eee;
+}
+
+/* Grocery List Container */
+.grocery-list-container {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 20px;
+    margin: 0 50px; /* Space around the container */
+    gap: 20px; /* Space between columns */
+}
+
+.aisle-column {
+    flex: 1; /* Equal width for all columns */
+    background-color: #FFD27F; /* Soft yellow */
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.aisle-column h2 {
+    text-align: center;
+    font-size: 18px;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.ingredient-card {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #ffffff; /* White card background */
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    display: flex;
+    gap: 10px;
+    flex-direction: row;
+    justify-content: space-between; /* Ensures even spacing for items inside the card */
+    height: 40px; /* Set a fixed height for all meal cards */
+}
+
+.ingredient-card h3 {
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-size: 16px;
+    color: #444;
+    flex-shrink: 0; /* Prevents meal type text from shrinking */
+}
+
+.ingredient-container {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: left;
+    gap: 10px;
+    height: 100%;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: flex-end;
+    gap: 10px;
+    height: 100%;
+}
+
+/* Sidebar */
+.sidenav {
+    font-family: "Quicksand", sans-serif;
+    height: 100%;
+    width: 180px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #333;
+    overflow-x: hidden;
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #818181;
+    display: block;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav hr {
+    width: 80%;
+    border: 0.5px solid #ffe4c4;
+    margin: 10px 0;
+}
+.nav-arrow-left,
+.nav-arrow-right {
+    position: absolute;
+    top: 50%; /* Center vertically */
+    transform: translateY(-50%);
+    background-color: #abedb8; /* Light green */
+    border: none;
+    border-radius: 50%;
+    color: white;
+    font-size: 24px;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav-arrow-left:hover,
+.nav-arrow-right:hover {
+    background-color: #72ba92; /* Darker green */
+}
+
+.nav-arrow-left {
+    left: 200px; /* Position on the far left */
+}
+
+.nav-arrow-right {
+    right: 10px; /* Position on the far right */
+}
+
+.recipe-details-container {
+    transition: all 0.5s ease-in-out;
+}
+
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .recipe-detail-wrapper {
+        flex-direction: column;
+        margin-left: 0;
+    }
+
+    .sidenav {
+        position: relative;
+        width: 100%;
+        height: auto;
+    }
+
+    .recipe-details-container {
+        margin-top: 20px;
+    }
+
+}
+
